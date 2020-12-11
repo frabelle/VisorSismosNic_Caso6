@@ -126,6 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AllowCrossSiteAttribute.cs" />
     <Compile Include="Models\departamento.cs" />
     <Compile Include="Models\periodo.cs" />
     <Compile Include="Models\sismos.cs" />
@@ -201,6 +202,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\L.TileLayer.BetterWMS.js" />
     <Content Include="Scripts\leaflet-panel-layers.min.js" />
     <Content Include="Scripts\leaflet-providers.js" />
     <Content Include="Scripts\leaflet-src.esm.js" />

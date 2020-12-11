@@ -1,84 +1,174 @@
-﻿<!--Section: Main info-->
+﻿
+@{
+    ViewBag.Title = "Visor";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+<br>
+<!--Section: Main features & Quick Start-->
+<!--Section: Main info-->
 <section class="mt-5 wow fadeIn">
 
-    
+    <div id="map" style="margin-left: -3em;"></div>
+
+    <script>
+        var map = L.map('map').setView([12.136005232925378, -86.297607421875], 5); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        //DEFINICIÓN DE WORKSPACE
+        var url = 'http://localhost:8080/geoserver/ows?';
+
+        //DEFINICIÓN DE CAPAS BASES
+        var terreno_osm = L.tileLayer.provider('Stamen.TerrainBackground', { maxZoom: 11 });
+        var osm_completo = L.tileLayer.provider('OpenStreetMap.Mapnik', { maxZoom: 12 });
+        var satelite_esri = L.tileLayer.provider('Esri.WorldImagery', { maxZoom: 12 });
+
+        //función para mostrar icono en cada capa
+        function iconByName(name) {
+            return '<i class="icon ' + name + '"></i>';
+        }
+
+        var limites = L.tileLayer.betterWms(url, { layers: 'sigdata:mapanica-nicaragua-municipios-2015-01-27', transparent: true, visible: true, format: 'image/png', maxZoom: 14 });
+
+        //Lista colapsable de capas bases
+        var baseLayers =
+            [
+                {
+                    group: "Capas bases",
+                    collapsed: true,
+                    layers:
+                        [
+                            {
+                                name: "Completo (OSM)",
+                                //icon: iconByName('icon-world'),
+                                layer: osm_completo
+                            },
+                            {
+                                name: "Sat&eacute;lite (ESRI)",
+                                //icon: iconByName('icon-mundo'),
+                                layer: satelite_esri
+                            },
+                            {
+                                name: "Terreno (OSM)",
+                                //icon: iconByName('icon-mundo'),
+                                layer: terreno_osm
+                            },
+
+                            {
+                                name: "Limites de Nicaragua",
+                                layer: limites
+                            }
+                        ]
+                }
+            ];
+
+        var supermercados = L.tileLayer.betterWms(url, { layers: 'b163:supermercado', transparent: true, visible: true, format: 'image/png', maxZoom: 14 });
+        var ciudades = L.tileLayer.betterWms(url, { layers: 'gis:city', transparent: true, visible: true, format: 'image/png', maxZoom: 14 });
+
+        var overLayers = [
+            {
+                group: "Capas",
+                icon: iconByName('icon-capas'),
+                collapsed: true,
+                layers:
+                    [
+                        {
+                            name: "Supermercados de Nicaragua",
+                            icon: iconByName('icon-cesta'),
+                            layer: supermercados
+                        },
+                        {
+                            name: "Ciudades de Nicaragua",
+                            icon: iconByName('icon-cesta'),
+                            layer: ciudades
+                        }
+                    ]
+            },
+        ];
+
+        map.addLayer(osm_completo);
+
+        var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers,
+            {
+                collapsibleGroups: true,
+                collapsed: true
+            });
+
+        map.addControl(panelLayers);
+
+        // Initialise the FeatureGroup to store editable layers
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+
+        var drawPluginOptions = {
+            position: 'topleft',
+            draw: {
+                rectangle: {
+                    allowIntersection: false, // Restricts shapes to simple polygons
+                    drawError: {
+                        color: '#e1e100', // Color the shape will turn when intersects
+                        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                    },
+                    shapeOptions: {
+                        color: '#97009c'
+                    }
+                },
+                polygon: {
+                    allowIntersection: false, // Restricts shapes to simple polygons
+                    drawError: {
+                        color: '#e1e100', // Color the shape will turn when intersects
+                        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                    },
+                    shapeOptions: {
+                        color: '#97009c'
+                    }
+                },
+                // disable toolbar item by setting it to false
+                polyline: false,
+                circle: false, // Turns off this drawing tool
+                marker: true,
+                circlemarker: false
+            },
+            edit: {
+                featureGroup: editableLayers, //REQUIRED!!
+                remove: true
+            }
+
+        };
+
+        // Initialise the draw control and pass it the FeatureGroup of editable layers
+        var drawControl = new L.Control.Draw(drawPluginOptions);
+        map.addControl(drawControl);
+
+        map.on(L.Draw.Event.CREATED, function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+
+            if (type === 'polygon') {
+                $("#coordinates").val(layer.getLatLngs());
+                $("#type").val(type);
+            }
+            if (type === 'rectangle') {
+                $("#coordinates").val(layer.getLatLngs());
+                $("#type").val(type);
+            }
+            if (type === 'marker') {
+                $("#coordinates").val(layer.getLatLng());
+                $("#type").val(type);
+                console.log(layer.getLatLng());
+            }
+
+            editableLayers.addLayer(layer);
+        });
+
+    </script>
 
 </section>
 <!--Section: Main info-->
-
-
 <!--Section: Main features & Quick Start-->
-<section>
-
-    <h3 class="h3 text-center mb-5">About MDB</h3>
-
-    <!--Grid row-->
-    <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 px-4">
-
-            <!--First row-->
-            <div class="row">
-                <div class="col-1 mr-3">
-                    <i class="fas fa-code fa-2x indigo-text"></i>
-                </div>
-                <div class="col-10">
-                    <h5 class="feature-title">Bootstrap 4</h5>
-                    <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
-                </div>
-            </div>
-            <!--/First row-->
-
-            <div style="height:30px"></div>
-
-            <!--Second row-->
-            <div class="row">
-                <div class="col-1 mr-3">
-                    <i class="fas fa-book fa-2x blue-text"></i>
-                </div>
-                <div class="col-10">
-                    <h5 class="feature-title">Detailed documentation</h5>
-                    <p class="grey-text">
-                        We give you detailed user-friendly documentation at your disposal. It will help you to implement your ideas
-                        easily.
-                    </p>
-                </div>
-            </div>
-            <!--/Second row-->
-
-            <div style="height:30px"></div>
-
-            <!--Third row-->
-            <div class="row">
-                <div class="col-1 mr-3">
-                    <i class="fas fa-graduation-cap fa-2x cyan-text"></i>
-                </div>
-                <div class="col-10">
-                    <h5 class="feature-title">Lots of tutorials</h5>
-                    <p class="grey-text">
-                        We care about the development of our users. We have prepared numerous tutorials, which allow you to learn
-                        how to use MDB as well as other technologies.
-                    </p>
-                </div>
-            </div>
-            <!--/Third row-->
-
-        </div>
-        <!--/Grid column-->
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12">
-
-            <p class="h5 text-center mb-4">Watch our "5 min Quick Start" tutorial</p>
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cXTThxoywNQ" allowfullscreen></iframe>
-            </div>
-        </div>
-        <!--/Grid column-->
-
-    </div>
-    <!--/Grid row-->
-
-</section>
-<!--Section: Main features & Quick Start-->
-
