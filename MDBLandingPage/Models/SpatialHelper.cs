@@ -2,13 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 
 namespace MDBLandingPage.Models
 {
     public class SpatialHelper
-    {/*
+    {
         public static string CreateRectangleWKT(string Shape)
         {
             try
@@ -71,10 +69,13 @@ namespace MDBLandingPage.Models
                     while (dr.Read())
                     {
                         sismos c = new sismos();
-                        c.Id = Convert.ToInt32(dr[0].ToString());
-                        c.Name = dr[1].ToString();
-                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[2].ToString());
-                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[3].ToString());
+                        c.id = Convert.ToInt32(dr[0].ToString());
+                        c.id_departamento = Convert.ToInt32(dr[1].ToString());
+                        c.id_periodo = Convert.ToInt32(dr[2].ToString());
+                        c.profundidad = Convert.ToDouble(dr[3].ToString());
+                        c.magnitud = Convert.ToDouble(dr[4].ToString());
+                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[5].ToString());
+                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[6].ToString());
                         Information.Add(c);
                     }
                 }
@@ -97,9 +98,9 @@ namespace MDBLandingPage.Models
                 NpgsqlConnection conn = new NpgsqlConnection(connectionString);
                 conn.Open();
 
-                List<Supermarket> Information = new List<Supermarket>();
+                List<sismos> Information = new List<sismos>();
 
-                string Transact = "SELECT Nombre, idMunicipio FROM spatial.sismos";
+                string Transact = "SELECT * FROM spatial.sismos";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(Transact, conn))
                 {
@@ -107,10 +108,14 @@ namespace MDBLandingPage.Models
 
                     while (dr.Read())
                     {
-                        Supermarket c = new Supermarket();
-                        c.Nombre = dr[0].ToString();
-                        c.idMunicipio = Convert.ToInt32(dr[1].ToString());
-
+                        sismos c = new sismos();
+                        c.id = Convert.ToInt32(dr[0].ToString());
+                        c.id_departamento = Convert.ToInt32(dr[1].ToString());
+                        c.id_periodo = Convert.ToInt32(dr[2].ToString());
+                        c.profundidad = Convert.ToDouble(dr[3].ToString());
+                        c.magnitud = Convert.ToDouble(dr[4].ToString());
+                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[5].ToString());
+                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[6].ToString());
                         Information.Add(c);
                     }
                 }
@@ -123,6 +128,6 @@ namespace MDBLandingPage.Models
             {
                 return null;
             }
-        }*/
+        }
     }
 }

@@ -40,6 +40,23 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.magnitud)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.profundidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_periodo)
+                    </td>
+                </tr>
+                }
             </tbody>
 
         </table>

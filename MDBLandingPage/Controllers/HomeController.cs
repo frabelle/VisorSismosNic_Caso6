@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MDBLandingPage.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,11 +32,38 @@ namespace MDBLandingPage.Controllers
             return View();
         }
 
-        public ActionResult Buttons()
+        public ActionResult Buttons(string Coordinates, string type)
         {
-            ViewBag.FullPageIntro = false;
-            ViewBag.RenderCarousel = true;
-            return View();
+            List<sismos> sismos = new List<sismos>();
+
+            if (Coordinates != null)
+            {
+                //Construct the data
+                var NewShape = StringHelper.ChangeStringByShape(type, Coordinates);
+
+                if (type == "rectangle")
+                {
+                    //Use MakeEnvelope
+                    var WKT = SpatialHelper.CreateRectangleWKT(NewShape);
+                    //Use Intersects
+                    sismos = SpatialHelper.GetInformationByPolygon(WKT);
+                }
+                else if (type == "polygon")
+                {
+                    //Transform
+                }
+                else if (type == "marker")
+                {
+                    //Get nearest point
+
+                }
+            }
+            else
+            {
+                sismos = SpatialHelper.GetAll();
+            }
+
+            return View(sismos);
         }
 
         public ActionResult Visor()

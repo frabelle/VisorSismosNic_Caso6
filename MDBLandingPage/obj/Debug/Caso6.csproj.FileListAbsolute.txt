@@ -253,3 +253,7 @@ C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\obj\Debug\Caso6.csp
 C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\obj\Debug\Caso6.csproj.CopyComplete
 C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\obj\Debug\MDBLandingPage.dll
 C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\obj\Debug\MDBLandingPage.pdb
+C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\bin\Npgsql.dll
+C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\bin\System.Memory.dll
+C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Usuario\Desktop\VisorSismosNic_Caso6\MDBLandingPage\bin\Npgsql.xml

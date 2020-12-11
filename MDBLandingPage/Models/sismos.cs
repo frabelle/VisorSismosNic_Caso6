@@ -11,12 +11,12 @@ namespace MDBLandingPage.Models
         public int id { get; set; }
         public double magnitud { get; set; }
 
-        [ForeignKey("id_departamento")]
+        //[ForeignKey("id_departamento")]
         public int id_departamento { get; set; }
 
-        [ForeignKey("id_periodo")]
+        //[ForeignKey("id_periodo")]
         public int id_periodo { get; set; }
-        public int profundidad { get; set; }
+        public double profundidad { get; set; }
         public float Lat { get; set; }
         public float Lng { get; set; }
 
