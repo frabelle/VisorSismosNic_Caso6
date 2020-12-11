@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Visor";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+
+<h2>Visor</h2>
+
+<div id="map" style="margin-bottom: 2em;"></div>
+
+<script>
+    var map = L.map('map').setView([12.136005232925378, -86.297607421875], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+    //DEFINICIÓN DE WORKSPACE
+    var url = 'http://localhost:8080/geoserver/ows?';
+
+    //DEFINICIÓN DE CAPAS BASES
+    var terreno_osm = L.tileLayer.provider('Stamen.TerrainBackground', { maxZoom: 11 });
+    var osm_completo = L.tileLayer.provider('OpenStreetMap.Mapnik', { maxZoom: 12 });
+    var satelite_esri = L.tileLayer.provider('Esri.WorldImagery', { maxZoom: 12 });
+
+    //Lista colapsable de capas bases
+    var baseLayers =
+        [
+            {
+                group: "Capas bases",
+                collapsed: true,
+                layers:
+                    [
+                        {
+                            name: "Completo (OSM)",
+                            //icon: iconByName('icon-world'),
+                            layer: osm_completo
+                        },
+                        {
+                            name: "Sat&eacute;lite (ESRI)",
+                            //icon: iconByName('icon-mundo'),
+                            layer: satelite_esri
+                        },
+                        {
+                            name: "Terreno (OSM)",
+                            //icon: iconByName('icon-mundo'),
+                            layer: terreno_osm
+                        },
+
+                        {
+                            name: "Limites de Nicaragua",
+                            layer: limites
+                        }
+                    ]
+            }
+        ];
+
+
+</script>
+
+

@@ -126,6 +126,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\departamento.cs" />
+    <Compile Include="Models\periodo.cs" />
+    <Compile Include="Models\sismos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +196,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\leaflet-panel-layers.min.js" />
+    <Content Include="Scripts\leaflet-providers.js" />
+    <Content Include="Scripts\leaflet-src.esm.js" />
+    <Content Include="Scripts\leaflet.groupedlayercontrol.min.js" />
+    <Content Include="Scripts\leaflet.js" />
     <Content Include="Scripts\mdb.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\modules\wow.js" />
@@ -228,10 +236,13 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Buttons.cshtml" />
+    <Content Include="Views\Home\Visor.cshtml" />
+    <Content Include="Scripts\leaflet.js.map" />
+    <Content Include="Scripts\leaflet-src.esm.js.map" />
+    <Content Include="Scripts\leaflet-src.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

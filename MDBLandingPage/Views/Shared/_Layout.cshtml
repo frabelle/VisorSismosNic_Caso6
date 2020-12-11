@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Scripts.Render("~/bundles/leafletv")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
 
@@ -328,7 +331,10 @@
 
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/leafletv")
+
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
     @RenderSection("scripts", required: false)
     <!-- Initializations -->
     <script type="text/javascript">

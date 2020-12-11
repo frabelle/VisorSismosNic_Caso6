@@ -37,5 +37,14 @@ namespace MDBLandingPage.Controllers
             ViewBag.RenderCarousel = true;
             return View();
         }
+
+        public ActionResult Visor()
+        {
+            ViewBag.Message = "Visor de Magnitus Sísmica en los departamentos de Nicaragua";
+            ViewBag.FullPageIntro = false;
+            ViewBag.RenderCarousel = true;
+            return View();
+        }
+
     }
 }
