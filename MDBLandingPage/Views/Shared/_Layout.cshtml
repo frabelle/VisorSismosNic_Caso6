@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
     @Scripts.Render("~/bundles/leafletv")
     @Scripts.Render("~/bundles/jquery")
 </head>
@@ -156,7 +155,7 @@
 
             </div>
             <!--/.Slides-->
-            
+
         </div>
         <!--/.Carousel Wrapper-->
     }
@@ -204,14 +203,15 @@
 
     </footer>
     <!--/.Footer-->
-
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/datatables")
-    @RenderSection("scripts", required: false)
     <!-- Initializations -->
     <script type="text/javascript">
         // Animations initialization
         new WOW().init();
     </script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>
