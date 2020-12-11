@@ -16,6 +16,7 @@ namespace MDBLandingPage.Models
 
         [ForeignKey("id_periodo")]
         public int id_periodo { get; set; }
+        public int profundidad { get; set; }
         public float Lat { get; set; }
         public float Lng { get; set; }
 
