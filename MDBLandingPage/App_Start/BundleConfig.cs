@@ -17,19 +17,13 @@ namespace MDBLandingPage
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/popper.min.js",
                       "~/Scripts/modules/wow.js",
                       "~/Scripts/mdb.min.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/mdb.min.css",
-                      "~/Content/site.css"));
-
 
             bundles.Add(new ScriptBundle("~/bundles/leafletv").Include(
                 "~/Scripts/leaflet.js",
@@ -42,12 +36,9 @@ namespace MDBLandingPage
                 "~/Scripts/leaflet.groupedlayercontrol.min.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                       "~/Content/mdb.min.css",
                       "~/Content/site.css",
                       "~/Content/leaflet-panel-layers.min.css",
                       "~/Content/leaflet.css",
@@ -55,14 +46,10 @@ namespace MDBLandingPage
                       "~/Content/style.css",
                       "~/Content/jquery.dataTables.css"));
 
+
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                 "~/Scripts/jquery.dataTables.js"
                 ));
-
-
-
-
-
         }
     }
 }
