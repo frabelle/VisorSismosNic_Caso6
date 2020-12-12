@@ -60,7 +60,7 @@ namespace MDBLandingPage.Models
 
                 List<SismosViews> Information = new List<SismosViews>();
 
-                string Transact = "SELECT * FROM spatial.registrosismos WHERE ST_Intersects('SRID=4326;" + NewPolygon + "', geom)";
+                string Transact = "SELECT departamento, magnitud, profundidad, periodo FROM spatial.registrosismos WHERE ST_Intersects('SRID=4326;" + NewPolygon + "', point)";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(Transact, conn))
                 {
@@ -73,8 +73,8 @@ namespace MDBLandingPage.Models
                         c.magnitud = Convert.ToDouble(dr[1].ToString());
                         c.profundidad = dr[2].ToString();
                         c.periodo = Convert.ToInt32(dr[3].ToString());
-                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[4].ToString());
-                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[5].ToString());
+                        //c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[4].ToString());
+                        //c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[5].ToString());
                         Information.Add(c);
                     }
                 }
