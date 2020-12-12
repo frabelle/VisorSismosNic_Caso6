@@ -134,6 +134,7 @@
     <Compile Include="Models\departamento.cs" />
     <Compile Include="Models\periodo.cs" />
     <Compile Include="Models\sismos.cs" />
+    <Compile Include="Models\SismosViews.cs" />
     <Compile Include="Models\SpatialHelper.cs" />
     <Compile Include="Models\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

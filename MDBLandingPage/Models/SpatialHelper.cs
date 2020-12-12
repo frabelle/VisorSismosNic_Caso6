@@ -50,7 +50,7 @@ namespace MDBLandingPage.Models
             }
         }
 
-        public static List<sismos> GetInformationByPolygon(string NewPolygon)
+        public static List<SismosViews> GetInformationByPolygon(string NewPolygon)
         {
             try
             {
@@ -58,9 +58,9 @@ namespace MDBLandingPage.Models
                 NpgsqlConnection conn = new NpgsqlConnection(connectionString);
                 conn.Open();
 
-                List<sismos> Information = new List<sismos>();
+                List<SismosViews> Information = new List<SismosViews>();
 
-                string Transact = "SELECT * FROM spatial.sismos WHERE ST_Intersects('SRID=4326;" + NewPolygon + "', geom)";
+                string Transact = "SELECT * FROM spatial.registrosismos WHERE ST_Intersects('SRID=4326;" + NewPolygon + "', geom)";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(Transact, conn))
                 {
@@ -68,14 +68,13 @@ namespace MDBLandingPage.Models
 
                     while (dr.Read())
                     {
-                        sismos c = new sismos();
-                        c.id = Convert.ToInt32(dr[0].ToString());
-                        c.id_departamento = Convert.ToInt32(dr[1].ToString());
-                        c.id_periodo = Convert.ToInt32(dr[2].ToString());
-                        c.profundidad = Convert.ToDouble(dr[3].ToString());
-                        c.magnitud = Convert.ToDouble(dr[4].ToString());
-                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[5].ToString());
-                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[6].ToString());
+                        SismosViews c = new SismosViews();
+                        c.departamento = dr[0].ToString();
+                        c.magnitud = Convert.ToInt32(dr[1].ToString());
+                        c.profundidad = dr[2].ToString();
+                        c.periodo = Convert.ToInt32(dr[3].ToString());
+                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[4].ToString());
+                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[5].ToString());
                         Information.Add(c);
                     }
                 }
@@ -90,7 +89,7 @@ namespace MDBLandingPage.Models
             }
         }
 
-        public static List<sismos> GetAll()
+        public static List<SismosViews> GetAll()
         {
             try
             {
@@ -98,9 +97,9 @@ namespace MDBLandingPage.Models
                 NpgsqlConnection conn = new NpgsqlConnection(connectionString);
                 conn.Open();
 
-                List<sismos> Information = new List<sismos>();
+                List<SismosViews> Information = new List<SismosViews>();
 
-                string Transact = "SELECT * FROM spatial.sismos";
+                string Transact = "SELECT * FROM spatial.registrosismos";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(Transact, conn))
                 {
@@ -108,14 +107,13 @@ namespace MDBLandingPage.Models
 
                     while (dr.Read())
                     {
-                        sismos c = new sismos();
-                        c.id = Convert.ToInt32(dr[0].ToString());
-                        c.id_departamento = Convert.ToInt32(dr[1].ToString());
-                        c.id_periodo = Convert.ToInt32(dr[2].ToString());
-                        c.profundidad = Convert.ToDouble(dr[3].ToString());
-                        c.magnitud = Convert.ToDouble(dr[4].ToString());
-                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[5].ToString());
-                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[6].ToString());
+                        SismosViews c = new SismosViews();
+                        c.departamento = dr[0].ToString();
+                        c.magnitud = Convert.ToInt32(dr[1].ToString());
+                        c.profundidad = dr[2].ToString();
+                        c.periodo = Convert.ToInt32(dr[3].ToString());
+                        c.Lat = dr.IsDBNull(2) ? 0f : Convert.ToSingle(dr[4].ToString());
+                        c.Lng = dr.IsDBNull(3) ? 0f : Convert.ToSingle(dr[5].ToString());
                         Information.Add(c);
                     }
                 }

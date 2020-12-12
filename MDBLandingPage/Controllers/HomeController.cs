@@ -34,7 +34,7 @@ namespace MDBLandingPage.Controllers
 
         public ActionResult Buttons(string Coordinates, string type)
         {
-            List<sismos> sismos = new List<sismos>();
+            List<SismosViews> sismos = new List<SismosViews>();
 
             if (Coordinates != null)
             {
@@ -63,6 +63,8 @@ namespace MDBLandingPage.Controllers
                 sismos = SpatialHelper.GetAll();
             }
 
+            ViewBag.FullPageIntro = false;
+            ViewBag.RenderCarousel = true;
             return View(sismos);
         }
 

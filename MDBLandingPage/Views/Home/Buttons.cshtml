@@ -1,6 +1,6 @@
-﻿@model List<MDBLandingPage.Models.sismos>
+﻿@model List<MDBLandingPage.Models.SismosViews>
 @{
-    ViewBag.Title = "Visor";
+    ViewBag.Title = "Buttons";
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
@@ -14,11 +14,11 @@
 
     <div id="map" style="margin-left: -3em;"></div>
 
-    @using (Html.BeginForm("Visor", "Home", FormMethod.Get))
+    @using (Html.BeginForm("Buttons", "Home", FormMethod.Get))
     {
         <br><br>
 
-        <table id="cities" class="bordered listdir datatables super-responsive">
+        <table id="sismos" class="bordered listdir datatables super-responsive">
             <thead>
                 <tr>
                     <th>
@@ -44,7 +44,7 @@
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.id_departamento)
+                        @Html.DisplayFor(modelItem => item.departamento)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.magnitud)
@@ -53,7 +53,7 @@
                         @Html.DisplayFor(modelItem => item.profundidad)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.id_periodo)
+                        @Html.DisplayFor(modelItem => item.periodo)
                     </td>
                 </tr>
                 }
@@ -222,7 +222,7 @@
         });
 
         $(document).ready(function () {
-            $('#cities').DataTable();
+            $('#sismos').DataTable();
         });
 
     </script>
